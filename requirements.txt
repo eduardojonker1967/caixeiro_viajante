@@ -1,0 +1,11 @@
+pandas
+numpy
+prophet
+matplotlib
+pymongo
+scikit-learn
+seaborn
+jinja2
+markdown
+weasyprint
+streamlit

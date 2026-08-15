@@ -1,0 +1,9 @@
+[Unit]
+Description=Executa o Roteirizador Preditivo Diariamente
+
+[Timer]
+OnCalendar=*-*-* 08:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

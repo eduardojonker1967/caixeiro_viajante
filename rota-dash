@@ -1,0 +1,5 @@
+#!/bin/bash
+# Script utilitário para lançar o dashboard do projeto
+PROJECT_DIR="/home/eduardo-note/Documentos/Caixeiro viajante"
+cd "$PROJECT_DIR" || exit
+streamlit run dashboard_interativo.py

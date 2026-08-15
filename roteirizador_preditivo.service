@@ -1,0 +1,12 @@
+[Unit]
+Description=Pipeline de Roteirização Preditiva
+After=network.target
+
+[Service]
+Type=oneshot
+User=eduardo-note
+WorkingDirectory=/home/eduardo-note/Documentos/Caixeiro viajante
+ExecStart=/bin/bash "/home/eduardo-note/Documentos/Caixeiro viajante/executar_pipeline_completo.sh"
+
+[Install]
+WantedBy=multi-user.target
