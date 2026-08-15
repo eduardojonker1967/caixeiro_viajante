@@ -1,5 +1,6 @@
 import csv
 import os
+import warnings
 
 
 def importar_dados(caminho_arquivo):
@@ -19,10 +20,25 @@ def importar_dados(caminho_arquivo):
 
     with open(caminho_arquivo, newline='', encoding='utf-8') as csvfile:
         leitor = csv.DictReader(csvfile)
-        for linha in leitor:
+        for numero_linha, linha in enumerate(leitor, start=2):
             origem = linha['cidade_origem'].strip()
             destino = linha['cidade_destino'].strip()
-            distancia = float(linha['distancia_km'].strip())
+            valor_distancia = linha['distancia_km'].strip()
+            try:
+                distancia = float(valor_distancia)
+            except ValueError:
+                raise ValueError(
+                    f"Linha {numero_linha}: valor inválido para distancia_km: '{valor_distancia}'"
+                )
+            par = (min(origem, destino), max(origem, destino))
+            if par in distancias:
+                warnings.warn(
+                    f"Linha {numero_linha}: par de cidades '{origem}'-'{destino}' duplicado. "
+                    "O valor anterior será mantido.",
+                    UserWarning
+                )
+                continue
+            distancias[par] = distancia
             distancias[(origem, destino)] = distancia
             distancias[(destino, origem)] = distancia  # grafo não-direcionado
 
