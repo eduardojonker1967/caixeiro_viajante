@@ -1,0 +1,7 @@
+{
+    "python.defaultInterpreterPath": "python3",
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "*.csv": "csv"
+    }
+}
