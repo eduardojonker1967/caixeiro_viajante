@@ -17,7 +17,7 @@ if not os.path.exists(arquivo_csv):
     }).to_csv(arquivo_csv, index=False, sep=';', encoding='utf-8-sig')
 
 # Usa sep=None para detectar automaticamente vírgula ou ponto e vírgula e encoding='utf-8-sig' para evitar problemas com BOM
-df_final = pd.read_csv(arquivo_csv, sep=';', encoding='utf-8')
+df_final = pd.read_csv(arquivo_csv, sep=',', encoding='utf-8')
 df_final['Cidade'] = df_final['Cidade'].astype(str).str.upper().str.strip()
 
 # Garante que a coluna Volume exista e converte valores problemáticos/vazios para 0

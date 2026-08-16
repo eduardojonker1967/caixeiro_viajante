@@ -1,0 +1,22 @@
+{
+  "iteracoes": 1000000,
+  "cenario_atual": {
+    "media": 650.02,
+    "desvio_padrao": 86.59,
+    "min": 500.0,
+    "25%": 575.06,
+    "50%": 650.04,
+    "75%": 724.94,
+    "max": 800.0
+  },
+  "modelo_otimizado": {
+    "media": 366.54,
+    "desvio_padrao": 53.57,
+    "min": 253.0,
+    "25%": 323.15,
+    "50%": 365.27,
+    "75%": 407.4,
+    "max": 497.53
+  },
+  "economia_percentual_media": 43.61
+}

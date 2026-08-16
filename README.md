@@ -566,6 +566,34 @@ Para garantir a reprodutibilidade e o bom funcionamento do projeto, documentamos
 * **Memória RAM:** 4 GB mínimo (8 GB recomendado, para suportar o carregamento em memória `RAM` de extensas planilhas de volumetria via Pandas).
 * **Armazenamento:** ~1 GB de espaço livre para comportar os binários das bibliotecas Python (`site-packages`) e geração dos *outputs* (CSVs e gráficos).
 
+### Ambiente de Execução Atual
+<environment_details>
+Current time: 2026-08-15T21:22:28-03:00
+Working directory: /home/eduardo-note/Documentos/Caixeiro viajante
+Workspace root folder: /home/eduardo-note/Documentos/Caixeiro viajante
+Open tabs:
+  mongodb-linux-x86_64.tgz
+  explicacao_prophet.md
+  gerador_relatorio.py
+  data_loader.py
+  analise_prophet.py
+  executar_tudo.py
+  Dockerfile
+  requirements.txt
+  database.py
+  README_PARALELISMO.md
+  main.py
+  tsp_solver.py
+  .gitignore
+  main_vrp.py
+  README.md
+  analise_paralelismo_detallhada.py
+  vrp_solver.py
+  benchmark_preditivo.py
+  dashboard_interativo.py
+  geradordepesos.py
+</environment_details>
+
 ---
 
 ## � Dificuldades e Desafios do Projeto

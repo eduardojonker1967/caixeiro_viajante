@@ -12,6 +12,15 @@ from datetime import datetime
 import pandas as pd
 import glob
 
+try:
+    from jinja2 import Template
+    import markdown
+    from weasyprint import HTML
+except Exception as e:
+    print(f"❌ ERRO: Bibliotecas para geração de PDF não disponíveis ({e}).")
+    print("👉 Instale: pip install jinja2 markdown weasyprint")
+    sys.exit(1)
+
 def coletar_environment_details():
     current_time = datetime.now().strftime("%Y-%m-%dT%H:%M:%S%z")
     working_directory = os.getcwd()
@@ -32,6 +41,8 @@ def fmt_env_block(current_time, working_directory, workspace_root, active_file, 
         f"Workspace root folder: {workspace_root}",
         f"Active file: {active_file}",
         f"Visible files: {', '.join(visible_files) if visible_files else ''}",
+        f"Baseline real (antes): regiao + ordem de chamados + experiencia do tecnico (reacao a volume represado, sem previsao)",
+        f"Modelo proposto (depois): IPL preditivo + solver TSP (NN + 2-opt)",
     ]
     if dados:
         lines.append("TSP Distância Aleatória (km): {:.2f}".format(dados.get("dist_aleatoria_km", "N/A")))
@@ -323,123 +334,19 @@ O log abaixo detalha o processo de convergência da heurística 2-opt, partindo 
 
 ## 🔧 APÊNDICE: RESUMO EXECUTIVO TSP + MONTE CARLO
 
-### Script de Resumo (resumo_executivo.py)
+O script `resumo_executivo.py` executa o solver TSP e a simulação Monte Carlo,
+exibindo no terminal as distâncias em km e os custos em R$.
 
-Script que executa TSP e Monte Carlo, exibindo no terminal as distâncias em km:
-
-```python
-#!/usr/bin/env python3
-"""
-Resumo Executivo - TSP + Monte Carlo
-Executa o solver e a simulação, exibindo as distâncias em km no terminal.
-"""
-
-import sys
-import os
-import json
-import numpy as np
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from tsp_solver import (
-    CIDADES_COORDENADAS,
-    calcular_matriz_distancias,
-    nearest_neighbor,
-    two_opt,
-    calcular_distancia_rota,
-    gerar_rota_aleatoria,
-)
-from testestress import simular_testes_monte_carlo
-
-def main():
-    print("\\n" + "="*70)
-    print("  📊 RESUMO EXECUTIVO - TSP + MONTE CARLO".center(70, "="))
-    print("="*70 + "\\n")
-
-    print("🗺️  PASSO 1: Calculando rotas (TSP)...")
-    matriz_dist, cidades = calcular_matriz_distancias(CIDADES_COORDENADAS)
-
-    rota_nn, dist_nn = nearest_neighbor(matriz_dist, start=0)
-    rota_otimizada, dist_otimizada = two_opt(rota_nn, matriz_dist)
-    # Adicionando importação que faltava no original
-    from tsp_solver import simulated_annealing
-    rota_sa, dist_sa = simulated_annealing(rota_nn, matriz_dist) 
-    rota_aleatoria, dist_aleatoria = gerar_rota_aleatoria(matriz_dist)
-
-    reducao_percent = ((dist_aleatoria - dist_otimizada) / dist_aleatoria) * 100
-
-    print(f"   • Rota Aleatória (Baseline):     {dist_aleatoria:>10.2f} km")
-    print(f"   • Rota Nearest Neighbor (NN):    {dist_nn:>10.2f} km")
-    print(f"   • Rota 2-opt (Otimizada):        {dist_otimizada:>10.2f} km")
-    print(f"   • Rota Simulated Annealing (SA): {dist_sa:>10.2f} km")
-    print(f"   • Redução alcançada:             {reducao_percent:>10.2f} %")
-    print()
-
-    print("🎲 PASSO 2: Simulação Monte Carlo (1.000.000 iterações)...")
-    df_mc = simular_testes_monte_carlo(
-        iteracoes=1_000_000,
-        cidades_rota=14,
-        total_cidades=18
-    )
-
-    custo_atual = df_mc['Atual'].mean()
-    custo_modelo = df_mc['Modelo'].mean()
-    economia_mc = ((1 - custo_modelo / custo_atual) * 100)
-
-    print(f"   • Custo Cenário Atual (R$):      {custo_atual:>10.2f}")
-    print(f"   • Custo Modelo Otimizado (R$):   {custo_modelo:>10.2f}")
-    print(f"   • Economia Monte Carlo:          {economia_mc:>10.2f} %")
-    print()
-
-    dados = {
-        "dist_aleatoria_km": round(dist_aleatoria, 2),
-        "dist_nn_km": round(dist_nn, 2),
-        "dist_2opt_km": round(dist_otimizada, 2),
-        "dist_sa_km": round(dist_sa, 2),
-        "reducao_percent": round(reducao_percent, 2),
-        "fator_melhoria": round(dist_aleatoria / dist_otimizada, 2),
-        "monte_carlo_custo_atual": round(custo_atual, 2),
-        "monte_carlo_custo_modelo": round(custo_modelo, 2),
-        "monte_carlo_economia_percent": round(economia_mc, 2),
-        "n_cidades": len(cidades),
-    }
-
-    with open('resumo_executivo.json', 'w', encoding='utf-8') as f:
-        json.dump(dados, f, indent=2, ensure_ascii=False)
-
-    print("💾 Dados salvos em: resumo_executivo.json")
-    print("\\n" + "="*70)
-    print("  ✅ RESUMO FINALIZADO".center(70, "="))
-    print("="*70 + "\\n")
-
-if __name__ == "__main__":
-    main()
-```
-
-### Como usar
-
+**Como usar:**
 ```bash
 python resumo_executivo.py
 ```
 
-O script irá:
-1. Calcular rota aleatória, Nearest Neighbor e 2-opt (em km)
-2. Executar simulação Monte Carlo com 1 milhão de iterações
-3. Exibir no terminal as distâncias totais e a economia estimada
-4. Salvar os dados em `resumo_executivo.json` para uso no relatório
-
----
-
-### Comparação: Pipeline Original vs Simplificado
-
-| Aspecto | pipeline_completo.py | pipeline_simples.py |
-|---------|----------------------|-------------------|
-| **Dependências** | MongoDB + database.py | Apenas stdlib |
-| **Linhas** | 65 | 140 (com documentação) |
-| **Configuração** | Hardcoded na função | Dicionários no topo |
-| **Fácil de modificar** | ❌ | ✅ |
-| **Tratamento de erro** | Complexo com logs DB | Simples e direto |
-| **Output visual** | Detalhado | Limpo e organizado |
+**Saída esperada:**
+- Rota Aleatória, Nearest Neighbor, 2-opt e Simulated Annealing (km)
+- Custo Cenário Atual vs. Modelo Otimizado (R$)
+- Economia Monte Carlo (%)
+- Arquivos gerados: `resumo_executivo.json` e `resumo_estatistico_monte_carlo.json`
 
 ### Como Usar
 
@@ -571,6 +478,50 @@ redução de \\textbf{{{reducao:.2f}\\%%}} na distância total percorrida, resul
     
     print("✅ Documento LaTeX gerado: documento_tsp_para_overleaf.tex")
 
+def gerar_pdf_relatorio_tsp(relatorio_md):
+    """Gera PDF a partir do relatório Markdown, preservando o bloco <environment_details>."""
+    print("🎨 Convertendo relatório TSP para PDF...")
+    css_style = """
+    @page { margin: 2cm; size: A4; }
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333; line-height: 1.6; font-size: 11pt; }
+    h1 { color: #1e1b4b; border-bottom: 3px solid #4f46e5; padding-bottom: 10px; font-size: 24pt; }
+    h2 { color: #312e81; margin-top: 25px; font-size: 18pt; border-left: 4px solid #6366f1; padding-left: 10px;}
+    h3 { color: #4338ca; font-size: 14pt; }
+    img { max-width: 100%; height: auto; display: block; margin: 20px auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    code { background-color: #eef2ff; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; color: #4338ca; }
+    pre { background-color: #1e293b; color: #e2e8f0; border-left: 4px solid #818cf8; padding: 15px; overflow-x: auto; border-radius: 8px; }
+    pre code { background-color: transparent; padding: 0; color: #e2e8f0; }
+    hr { border: 0; height: 1px; background: #e2e8f0; margin: 40px 0; }
+    .insight { background-color: #eef2ff; padding: 15px; border-left: 5px solid #6366f1; margin: 20px 0; border-radius: 4px; }
+    .insight strong { color: #312e81; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; font-weight: bold; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    environment_details { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; margin: 15px 0; font-family: 'Courier New', monospace; font-size: 0.9em; color: #475569; }
+    """
+    
+    try:
+        conteudo_html = markdown.markdown(relatorio_md, extensions=['extra'])
+        html_template = f"""
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+            <meta charset="UTF-8">
+            <title>Relatório TSP Consolidado</title>
+            <style>{css_style}</style>
+        </head>
+        <body>
+            {conteudo_html}
+        </body>
+        </html>
+        """
+        nome_arquivo_pdf = f'RELATORIO_TSP_CONSOLIDADO_{datetime.now().strftime("%Y-%m-%d_%Hh%Mm%Ss")}.pdf'
+        HTML(string=html_template, base_url=os.path.abspath('.')).write_pdf(nome_arquivo_pdf)
+        print(f"✅ Sucesso! Relatório em PDF '{nome_arquivo_pdf}' gerado.")
+    except Exception as e:
+        print(f"⚠️ Aviso: Não foi possível gerar o PDF. Erro: {e}")
+
 if __name__ == "__main__":
     print("\n" + "="*70)
     print(" 📊 GERADOR DE RELATÓRIO CONSOLIDADO ".center(70, "="))
@@ -578,10 +529,12 @@ if __name__ == "__main__":
     
     relatorio = gerar_relatorio_tsp()
     gerar_documento_overleaf()
+    gerar_pdf_relatorio_tsp(relatorio)
     
     print("\n" + "="*70)
     print(" ✅ RELATÓRIOS GERADOS COM SUCESSO ".center(70, "="))
     print("="*70)
     print("\n📦 Arquivos criados:")
     print("   • RELATORIO_TSP_CONSOLIDADO.md")
-    print("   • documento_tsp_para_overleaf.tex\n")
+    print("   • documento_tsp_para_overleaf.tex")
+    print("   • RELATORIO_TSP_CONSOLIDADO_*.pdf\n")

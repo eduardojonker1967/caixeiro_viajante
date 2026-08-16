@@ -1,0 +1,2 @@
+teste,sa_media,sa_dp,ag_media,ag_dp,p_value,significativo_05,interpretacao
+Mann-Whitney U,1456.37,26.64,1525.36,68.68,0.0,True,Diferença significativa

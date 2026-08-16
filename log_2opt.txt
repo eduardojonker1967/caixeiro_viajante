@@ -1,0 +1,24 @@
+======================================================================
+LOG DE EXECUÇÃO - ALGORITMO 2-OPT
+======================================================================
+Início em: 2026-08-15 21:48:40
+Distância Inicial (NN): 1680.85 km
+----------------------------------------------------------------------
+Iteração 1: Melhoria encontrada! Nova distância: 1680.85 km
+Iteração 2: Melhoria encontrada! Nova distância: 1674.18 km
+Iteração 3: Melhoria encontrada! Nova distância: 1674.18 km
+Iteração 4: Melhoria encontrada! Nova distância: 1649.92 km
+Iteração 5: Melhoria encontrada! Nova distância: 1648.92 km
+Iteração 6: Melhoria encontrada! Nova distância: 1645.96 km
+Iteração 7: Melhoria encontrada! Nova distância: 1621.50 km
+Iteração 8: Melhoria encontrada! Nova distância: 1603.56 km
+Iteração 9: Melhoria encontrada! Nova distância: 1580.11 km
+Iteração 10: Melhoria encontrada! Nova distância: 1496.47 km
+Iteração 11: Melhoria encontrada! Nova distância: 1454.91 km
+Iteração 12: Melhoria encontrada! Nova distância: 1450.11 km
+----------------------------------------------------------------------
+Convergência alcançada. Nenhuma melhoria nas últimas 10000 iterações.
+Distância Final: 1450.11 km
+Melhoria Total: 230.73 km (13.73%)
+Tempo de Execução: 0.0062 segundos
+======================================================================

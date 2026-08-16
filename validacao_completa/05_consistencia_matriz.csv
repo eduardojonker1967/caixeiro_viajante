@@ -1,0 +1,2 @@
+n_cidades,simetrica,diagonal_zero,sem_negativos,min_km,max_km,media_km,std_km,soma_total_km
+18,True,True,True,10.49,491.78,188.02,111.67,57534.59

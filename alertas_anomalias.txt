@@ -1,0 +1,1 @@
+O modelo Prophet identificou 33 picos e 39 quedas atípicas no volume de impressão.

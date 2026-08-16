@@ -81,8 +81,7 @@ def main():
     df_mc = simular_testes_monte_carlo(
         iteracoes=1_000_000,
         cidades_rota=14,
-        total_cidades=18,
-        seed=42 # Adicionando seed para reprodutibilidade
+        total_cidades=18
     )
 
     custo_atual = df_mc['Atual'].mean()
