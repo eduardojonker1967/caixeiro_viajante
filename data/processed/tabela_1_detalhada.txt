@@ -1,0 +1,39 @@
+======================================================================
+TABELA 1: RESULTADOS DO TSP - TRAVELING SALESMAN PROBLEM
+Projeto: Roteirizador Preditivo de Santa Catarina
+======================================================================
+
+CIDADES VISITADAS NA ROTA OTIMIZADA:
+----------------------------------------------------------------------
+ 1. FLORIANÓPOLIS
+ 2. IMBITUBA
+ 3. TUBARÃO
+ 4. CRICIÚMA
+ 5. LAGES
+ 6. SÃO MIGUEL DO OESTE
+ 7. CONCÓRDIA
+ 8. JOAÇABA
+ 9. VIDEIRA
+10. CHAPECÓ
+11. RIO DO SUL
+12. CURITIBANOS
+13. MAFRA
+14. JOINVILLE
+15. JARAGUÁ DO SUL
+16. BRUSQUE
+17. BLUMENAU
+18. ITAJAÍ
+
+RESUMO EXECUTIVO:
+----------------------------------------------------------------------
+Distância Rota Aleatória (Baseline):      3501.27 km
+Distância Rota Otimizada (TSP):          1450.11 km
+Redução Absoluta:                         2051.16 km
+Redução Percentual:                         58.58 %
+Fator de Melhoria:                           2.41 x
+
+ALGORITMO UTILIZADO:
+----------------------------------------------------------------------
+1. Nearest Neighbor: Construção gulosa de rota inicial
+2. 2-opt: Otimização local iterativa para minimizar distância
+3. Método de Distância: Haversine (cálculo geodésico em km)
