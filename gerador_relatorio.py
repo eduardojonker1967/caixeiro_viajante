@@ -797,5 +797,15 @@ Este trabalho demonstrou com sucesso a implementação de um sistema de roteiriz
         
     print("👉 Abra os arquivos gerados (MD ou PDF) para ver os gráficos e a análise.")
 
+    # Anexa referência ao anexo de validação experimental
+    anexo_md = 'anexo_validacao_experimental.md'
+    if os.path.exists(anexo_md):
+        with open(anexo_md, 'r', encoding='utf-8') as f:
+            anexo_conteudo = f.read()
+        with open(f'RELATORIO_GERENCIAL_{timestamp_str}.md', 'a', encoding='utf-8') as f:
+            f.write('\n\n---\n\n')
+            f.write(anexo_conteudo)
+        print(f"✅ Anexo de validação experimental inserido no relatório.")
+
 if __name__ == "__main__":
     gerar_relatorio()

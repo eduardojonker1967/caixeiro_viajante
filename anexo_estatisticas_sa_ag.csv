@@ -1,0 +1,3 @@
+metodo,n_execucoes,media_km,mediana_km,min_km,max_km,std_km,cv_pct,ic_95_inf,ic_95_sup,tempo_medio_s,tempo_std_s
+SA,30,1461.35,1459.19,1430.76,1520.94,22.54,1.54,1453.28,1469.41,0.0714,0.0254
+AG,30,1525.36,1514.02,1443.61,1741.11,69.86,4.58,1500.36,1550.35,0.656,0.154

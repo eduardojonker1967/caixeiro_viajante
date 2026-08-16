@@ -1,0 +1,7 @@
+{
+  "metodo": "Haversine",
+  "raio_terra_km": 6371,
+  "fonte_coordenadas": "Latitude/longitude das cidades de Santa Catarina (tsp_solver.py)",
+  "data_referencia": "agosto/2026",
+  "observacao": "Distância geodésica entre pares de cidades, independentemente de modo de transporte ou condição de tráfego."
+}

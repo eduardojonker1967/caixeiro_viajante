@@ -1,0 +1,6 @@
+solver,distancia_km,gap_vs_otimo_pct
+Aleatória,3501.27,141.45
+NN,1450.11,0.0
+2-opt,1450.11,0.0
+SA,1462.74,0.87
+AG,1455.5,0.37
