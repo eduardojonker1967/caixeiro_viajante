@@ -3,6 +3,33 @@
 **Versão:** 7.0 | **Última atualização:** Agosto 2026 | **Status:** Artigo Científico
 **Autor:** Eduardo Lopes Jonker
 
+<environment_details>
+Current time: 2026-08-15T22:47:06-03:00
+Working directory: /home/eduardo-note/Documentos/Caixeiro viajante
+Workspace root folder: /home/eduardo-note/Documentos/Caixeiro viajante
+Open tabs:
+  mongodb-linux-x86_64.tgz
+  explicacao_prophet.md
+  gerador_relatorio.py
+  data_loader.py
+  analise_prophet.py
+  executar_tudo.py
+  Dockerfile
+  requirements.txt
+  database.py
+  README_PARALELISMO.md
+  main.py
+  tsp_solver.py
+  .gitignore
+  main_vrp.py
+  README.md
+  analise_paralelismo_detallhada.py
+  vrp_solver.py
+  benchmark_preditivo.py
+  dashboard_interativo.py
+  geradordepesos.py
+</environment_details>
+
 ## 📜 Resumo (Abstract)
 
 Este trabalho apresenta um sistema de roteirização logística inteligente que transcende a otimização de rotas clássica. A metodologia integra **modelagem preditiva de séries temporais** (Prophet), **análise de decisão multicritério** (MCDA) e **otimização de rotas (TSP/VRP)** para criar um framework de *Roteirização Preditiva Antecipatória*. O sistema não apenas minimiza a distância, mas maximiza o valor do negócio ao priorizar dinamicamente os nós da malha logística com base em um **Índice de Prioridade Logística (IPL)**, que pondera demanda futura, risco de SLA, criticidade do serviço e impacto ambiental (ESG). A validação econômica é realizada por meio de **Simulações de Monte Carlo**, e a robustez dos dados é auditada por algoritmos de **detecção de anomalias não supervisionadas** (Isolation Forest). Adicionalmente, a escalabilidade computacional é garantida por uma arquitetura de **processamento paralelo**, cuja eficiência é analisada sob a ótagem da Lei de Amdahl e do framework PCAM. O resultado é um Gêmeo Digital (Digital Twin) para gestão de frotas, capaz de reduzir custos operacionais entre 20-35% e, simultaneamente, diminuir a pegada de carbono da operação.
@@ -69,6 +96,15 @@ Após a execução, os resultados estarão em:
 - **Logs:** `logs/system_logs_*.txt` e `logs/system_logs_*.pdf`
 
 ---
+
+## 🚀 Trabalhos Futuros
+
+O presente trabalho estabelece uma base metodológica sólida para a roteirização preditiva em administração pública. Como próximos passos, destacam-se duas linhas de evolução:
+
+1. **Extensão para VRP com Janelas de Tempo (VRPTW):** Generalizar o modelo para múltiplos veículos, incorporando restrições de capacidade e janelas de atendimento, mantendo a lógica do IPL para priorização dos nós.
+2. **Piloto monitorado em campo:** Coletar dados reais de múltiplos ciclos operacionais antes/depois, controlando sazonalidade e volume de chamados, para validar economicamente o ganho com maior robustez.
+
+Essas linhas consolidarão a transição de um estudo algorítmico para um sistema operacional replicável em gestão pública.
 
 ## 📦 Instalação Completa
 

@@ -71,7 +71,7 @@ def main():
     print("\n" + "═"*50)
     print(" 🎉 PIPELINE FINALIZADO COM SUCESSO ".center(50, "═"))
     print(" 📂 Relatórios gerados em PDF e Markdown".center(50))
-    print(" 🗄️ Snapshot salvo em 'historico_relatorios/'".center(50))
+    print(" 🗄️ Snapshot salvo em 'relatorios/historico/'".center(50))
     print("═"*50)
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ import shutil
 from datetime import datetime
 import glob
 
-DIRETORIO_HISTORICO = 'historico_relatorios' # Diretório onde os relatórios arquivados serão salvos
+DIRETORIO_HISTORICO = 'relatorios/historico' # Diretório onde os relatórios arquivados serão salvos
 ARQUIVOS_GRAFICOS = [
     'analise_previsao_geral_30d.png',
     'analise_previsao_geral_120d.png',

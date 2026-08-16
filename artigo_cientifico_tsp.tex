@@ -323,6 +323,17 @@ As principais variações do VRP que poderiam ser integradas futuramente incluem
 
 A integração do IPL com um solver de VRP permitiria não apenas otimizar a rota de um único veículo, mas orquestrar uma frota inteira de forma preditiva e baseada em valor.
 
+\section{Trabalhos Futuros}
+
+O presente trabalho estabelece uma base metodológica sólida para a roteirização preditiva em administração pública. Como próximos passos, destacam-se duas linhas de evolução:
+
+\begin{itemize}
+    \item \textbf{Extensão para VRP com Janelas de Tempo (VRPTW):} Generalizar o modelo para múltiplos veículos, incorporando restrições de capacidade e janelas de atendimento, mantendo a lógica do IPL para priorização dos nós.
+    \item \textbf{Piloto monitorado em campo:} Coletar dados reais de múltiplos ciclos operacionais antes/depois, controlando sazonalidade e volume de chamados, para validar economicamente o ganho com maior robustez.
+\end{itemize}
+
+Essas linhas consolidarão a transição de um estudo algorítmico para um sistema operacional replicável em gestão pública.
+
 \section{Conclusão}
 
 Este trabalho demonstrou com sucesso a implementação de um sistema de roteirização preditiva que supera as limitações do TSP tradicional. Ao integrar modelagem de séries temporais (Prophet) e análise de decisão multicritério (IPL), o sistema transforma a otimização logística de um problema puramente geométrico para uma decisão estratégica orientada a valor.
