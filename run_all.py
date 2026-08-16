@@ -15,14 +15,23 @@ from pathlib import Path
 BASE = Path(__file__).parent.resolve()
 
 SCRIPTS = [
+    # 1. Predição
     ('src/analysis/analise_prophet.py', 'Predição Prophet'),
+    # 2. IPL / Pesos
     ('src/logistics/geradordepesos.py', 'Cálculo IPL'),
+    # 3. Simulação Monte Carlo
     ('src/simulation/testestress.py', 'Monte Carlo'),
+    # 4. Resumo executivo TSP + Monte Carlo
     ('src/simulation/resumo_executivo.py', 'Resumo executivo'),
+    # 5. Logs de sementes SA/AG
     ('scripts/gerar_logs_sementes.py', 'Logs SA/AG'),
+    # 6. Validação experimental completa
     ('scripts/validacao_completa.py', 'Validação experimental'),
+    # 7. Validação avançada complementar
     ('validacao/complementar/validacao_avancada.py', 'Validação avançada'),
+    # 8. Relatório gerencial
     ('src/reporting/gerador_relatorio.py', 'Relatório gerencial'),
+    # 9. Relatório TSP
     ('src/reporting/gerador_relatorio_tsp.py', 'Relatório TSP'),
 ]
 
