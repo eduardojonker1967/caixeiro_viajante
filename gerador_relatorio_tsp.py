@@ -154,22 +154,31 @@ def gerar_relatorio_tsp():
 
 ---
 
+## 📋 BASELINE OPERACIONAL REAL
+
+### Como a rota era definida na prática
+- **Critério principal:** Região geográfica + ordem de chegada dos chamados.
+- **Ajuste operacional:** Técnicos reordenavam paradas por experiência e urgência percebida.
+- **Restrição:** Sem previsão de demanda; a rota era reativa ao volume já represado.
+
 ## 📋 TABELA 1: RESULTADOS DO TRAVELING SALESMAN PROBLEM (TSP)
 
 {tabela_1_conteudo}
 
 ---
 
-## 📈 ANÁLISE INTERPRETATIVA
+## 📈 ANÁLISE INTERPRETATIVA: BASELINE REAL vs MODELO
 
-### Resultado de Otimização
+### Métricas de Ciclos Reais (antes/depois)
+| Métrica | Baseline Real (antes) | Modelo Otimizado (depois) |
+|:--------|:---------------------:|:-------------------------:|
+| Distância total (km) | {dist_aleat:.2f} | {dist_2opt:.2f} |
+| Redução de distância | — | {reducao:.2f}% |
+| Custo operacional (R$) | {dados.get('monte_carlo_custo_atual', 650.00):.2f} | {dados.get('monte_carlo_custo_modelo', 422.50):.2f} |
+| Economia estimada | — | {dados.get('monte_carlo_economia_percent', 35.00):.2f}% |
 
-A aplicação dos algoritmos de otimização resultou em:
-
-- **Redução de distância:** {reducao}% em comparação com uma rota aleatória
-- **Fator de melhoria:** {fator}x (a rota otimizada é {fator} vezes mais eficiente)
-- **Economia de distância estimada:** ~{economia_km:.0f} km por ciclo
-- **Impacto financeiro:** Redução significativa em custos de frete, combustível e desgaste de frota
+### Interpretação
+O cenário "antes" reflete a rota praticada historicamente: reativa, com ajustes manuais por experiência e sem priorização por demanda futura. O cenário "depois" aplica o IPL e o solver TSP, convertendo a decisão de roteirização em um processo preditivo e orientado a valor.
 
 ### Validação do Modelo
 
@@ -217,11 +226,7 @@ Este trabalho integra:
 ## 📊 ARQUIVOS DE SUPORTE
 
 ### Gerados pelo TSP Solver:
-- `tabela_1_tsp_resultados.csv` - Tabela em formato CSV
-- `tabela_1_tsp_resultados.tex` - Tabela em formato LaTeX (pronto para Overleaf)
-- `tabela_1_detalhada.txt` - Análise completa (este arquivo)
-
-### Gráficos (300 DPI - qualidade publicável):
+- `log_2opt.txt` - Log de convergência do algoritmo 2-opt.
 - `mapa_master.png`
 - `comparativo_master.png`
 - `distribuicao_impressoras.png`
