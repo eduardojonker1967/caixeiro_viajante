@@ -4,12 +4,10 @@
 **Autor:** Eduardo Lopes Jonker
 
 <environment_details>
-Current time: 2026-08-15T23:01:00-03:00
+Current time: 2026-08-15T23:04:11-03:00
 Working directory: /home/eduardo-note/Documentos/Caixeiro viajante
 Workspace root folder: /home/eduardo-note/Documentos/Caixeiro viajante
 Open tabs:
-  mongodb-linux-x86_64.tgz
-  explicacao_prophet.md
   src/reporting/gerador_relatorio.py
   scripts/data_loader.py
   src/analysis/analise_prophet.py
