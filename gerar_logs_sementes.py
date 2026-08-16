@@ -10,7 +10,7 @@ import csv
 import os
 
 # Importa solver e dados reais
-from tsp_solver import (
+from src.optimization.tsp_solver import (
     CIDADES_COORDENADAS,
     calcular_matriz_distancias,
     nearest_neighbor,

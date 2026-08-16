@@ -31,7 +31,7 @@ warnings.filterwarnings("ignore")
 # ===================== IMPORTS DO PROJETO =====================
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from tsp_solver import (
+from src.optimization.tsp_solver import (
     CIDADES_COORDENADAS,
     calcular_matriz_distancias,
     nearest_neighbor,

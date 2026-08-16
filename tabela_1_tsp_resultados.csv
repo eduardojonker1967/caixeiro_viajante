@@ -1,5 +1,0 @@
-﻿Métrica,Rota Aleatória (Baseline),Rota Otimizada (TSP)
-Distância Total,3501.27 km,1450.11 km
-Número de Cidades,18,18
-Redução de Distância,-,58.58%
-Eficiência do Algoritmo,0%,2.41x

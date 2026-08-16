@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
-from tsp_solver import (
+from src.optimization.tsp_solver import (
     CIDADES_COORDENADAS,
     calcular_matriz_distancias,
     nearest_neighbor,

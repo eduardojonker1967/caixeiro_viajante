@@ -2,6 +2,7 @@
 stats_env/
 venv/
 env/
+.venv-3/
 
 # Arquivos de cache e compilados do Python
 __pycache__/
@@ -26,11 +27,21 @@ build/
 *.sqlite
 *.db
 logs/
+mongo_data/
+mongodb_portable/
 
-# Diretórios de histórico
-historico_relatorios/
-historico_readme/
+# Relatórios gerados e artefatos
+relatorios/
+imagens/
+data/processed/
+data/saida/
+validacao/complementar/
 
-# Exceções: Mantenha arquivos de exemplo e requisitos
-!requirements.txt
-!.env.example
+# Dados temporários
+*.tmp
+*.swp
+*.swo
+
+# Sistema
+.DS_Store
+Thumbs.db

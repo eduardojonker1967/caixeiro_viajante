@@ -1,1 +1,0 @@
-O algoritmo Isolation Forest identificou 2 cidades com comportamento atípico no cruzamento de Volume vs Logística.
