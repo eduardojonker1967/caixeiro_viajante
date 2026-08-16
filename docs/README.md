@@ -4,30 +4,30 @@
 **Autor:** Eduardo Lopes Jonker
 
 <environment_details>
-Current time: 2026-08-15T22:47:06-03:00
+Current time: 2026-08-15T23:01:00-03:00
 Working directory: /home/eduardo-note/Documentos/Caixeiro viajante
 Workspace root folder: /home/eduardo-note/Documentos/Caixeiro viajante
 Open tabs:
   mongodb-linux-x86_64.tgz
   explicacao_prophet.md
-  gerador_relatorio.py
-  data_loader.py
-  analise_prophet.py
-  executar_tudo.py
-  Dockerfile
+  src/reporting/gerador_relatorio.py
+  scripts/data_loader.py
+  src/analysis/analise_prophet.py
+  scripts/executar_tudo.py
+  src/infra/Dockerfile
   requirements.txt
-  database.py
-  README_PARALELISMO.md
-  main.py
-  tsp_solver.py
+  scripts/database.py
+  docs/README_PARALELISMO.md
+  scripts/main.py
+  src/optimization/tsp_solver.py
   .gitignore
-  main_vrp.py
-  README.md
-  analise_paralelismo_detallhada.py
-  vrp_solver.py
-  benchmark_preditivo.py
-  dashboard_interativo.py
-  geradordepesos.py
+  src/optimization/main_vrp.py
+  docs/README.md
+  src/analysis/analise_paralelismo_detallhada.py
+  src/optimization/vrp_solver.py
+  src/analysis/benchmark_preditivo.py
+  src/visualization/dashboard_interativo.py
+  src/logistics/geradordepesos.py
 </environment_details>
 
 ## 📜 Resumo (Abstract)
@@ -468,14 +468,46 @@ python -c "import pandas as pd; df=pd.read_csv('volumetria_preenchida.csv'); pri
 
 O sistema foi desenhado em uma arquitetura de *pipeline* modular, onde a saída matemática de um script alimenta o próximo passo da tomada de decisão.
 
-1. **`analise_prophet.py` (Motor Preditivo):** Responsável por carregar e simular o histórico de requisições logísticas e treinar o modelo de Machine Learning de Séries Temporais. Ele exporta a volumetria futura prevista (`previsao_impressoes.csv`) e gera os gráficos analíticos.
-2. **`geradordepesos.py` (Motor de Negócios):** É o cérebro das prioridades. Carrega as volumetrias, cruza com dados de inventário/SLA e calcula métricas de consumo (custos, toners e **impacto em árvores**), gerando o **Índice de Prioridade Logística (IPL)**.
-3. **`analise_anomalias.py` (Auditoria de Dados):** Utiliza o algoritmo **Isolation Forest** (Random Forest) para detectar anomalias multivariadas nos dados de pesos, garantindo que cidades com comportamentos atípicos sejam sinalizadas para revisão humana.
-4. **`testestress.py` (Simulador Financeiro):** Script de validação de negócio que executa iterações randômicas para comparar o custo logístico base (Cenário Atual) contra o cenário proposto pelo modelo otimizado, evidenciando o percentual de economia de capital (ROI). Ele também gera o gráfico comparativo de custos.
-4. **`dashboard_interativo.py` (Gêmeo Digital / Digital Twin):** Interface em Streamlit que permite a manipulação de parâmetros em tempo real, visualização de projeções e execução de simulações estocásticas.
-5. **`gerador_relatorio.py` (Gerador de Prova de Conceito):** Engine de relatórios que consolida evidências gráficas e métricas de acurácia (MAPE) para auditoria gerencial.
-6. **`pipeline_completo.py` (Orquestrador de Fluxo):** Garante a execução atômica do pipeline, desde o treinamento do modelo até o arquivamento dos resultados.
-7. **`versionar_relatorio.py` (Governança de Dados):** Snapshots históricos para análise de evolução e rastreabilidade de decisões.
+### Estrutura de Diretórios
+
+```
+├── src/
+│   ├── analysis/            # analise_prophet.py, benchmark_*, analise_anomalias.py
+│   ├── optimization/        # tsp_solver.py, vrp_solver.py, main_vrp.py
+│   ├── logistics/           # geradordepesos.py, paralelismo_logistica_cidades.py
+│   ├── simulation/          # testestress.py, monte_carlo_*.py, resumo_executivo.py
+│   ├── visualization/       # dashboard_interativo.py
+│   ├── reporting/           # gerador_relatorio.py, gerador_relatorio_tsp.py
+│   └── infra/               # Dockerfile, docker-compose.yml, scripts de deploy
+├── scripts/                 # pipeline_*.py, main.py, database.py, utilitários
+├── docs/                    # Documentação e artigos
+│   ├── README.md
+│   ├── README_PARALELISMO.md
+│   └── artigos/
+├── data/
+│   ├── raw/                 # Dados originais
+│   └── processed/           # Dados processados e intermediários
+├── relatorios/              # Saída dos geradores
+│   ├── gerencial/
+│   ├── tsp/
+│   ├── paralelismo/
+│   ├── validacao/
+│   ├── apresentacao/
+│   └── historico/
+├── imagens/                 # Gráficos e PNGs gerados
+└── tests/                   # Testes automatizados
+```
+
+### Pipeline de Execução
+
+1. **`src/analysis/analise_prophet.py` (Motor Preditivo):** Responsável por carregar e simular o histórico de requisições logísticas e treinar o modelo de Machine Learning de Séries Temporais. Ele exporta a volumetria futura prevista (`previsao_impressoes.csv`) e gera os gráficos analíticos.
+2. **`src/logistics/geradordepesos.py` (Motor de Negócios):** É o cérebro das prioridades. Carrega as volumetrias, cruza com dados de inventário/SLA e calcula métricas de consumo (custos, toners e **impacto em árvores**), gerando o **Índice de Prioridade Logística (IPL)**.
+3. **`src/analysis/analise_anomalias.py` (Auditoria de Dados):** Utiliza o algoritmo **Isolation Forest** (Random Forest) para detectar anomalias multivariadas nos dados de pesos, garantindo que cidades com comportamentos atípicos sejam sinalizadas para revisão humana.
+4. **`src/simulation/testestress.py` (Simulador Financeiro):** Script de validação de negócio que executa iterações randômicas para comparar o custo logístico base (Cenário Atual) contra o cenário proposto pelo modelo otimizado, evidenciando o percentual de economia de capital (ROI). Ele também gera o gráfico comparativo de custos.
+5. **`src/visualization/dashboard_interativo.py` (Gêmeo Digital / Digital Twin):** Interface em Streamlit que permite a manipulação de parâmetros em tempo real, visualização de projeções e execução de simulações estocásticas.
+6. **`src/reporting/gerador_relatorio.py` (Gerador de Prova de Conceito):** Engine de relatórios que consolida evidências gráficas e métricas de acurácia (MAPE) para auditoria gerencial.
+7. **`scripts/pipeline_completo.py` (Orquestrador de Fluxo):** Garante a execução atômica do pipeline, desde o treinamento do modelo até o arquivamento dos resultados.
+8. **`src/reporting/versionar_relatorio.py` (Governança de Dados):** Snapshots históricos para análise de evolução e rastreabilidade de decisões.
 
 ---
 
