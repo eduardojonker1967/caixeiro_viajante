@@ -183,10 +183,10 @@ def gerar_relatorio_tsp():
 ### Métricas de Ciclos Reais (antes/depois)
 | Métrica | Baseline Real (antes) | Modelo Otimizado (depois) |
 |:--------|:---------------------:|:-------------------------:|
-| Distância total (km) | {dist_aleat:.2f} | {dist_2opt:.2f} |
+| Distância total (km) | {dist_aleat:.2f} | {melhor_dist_otimizada:.2f} |
 | Redução de distância | — | {reducao:.2f}% |
-| Custo operacional (R$) | {dados.get('monte_carlo_custo_atual', 650.00):.2f} | {dados.get('monte_carlo_custo_modelo', 422.50):.2f} |
-| Economia estimada | — | {dados.get('monte_carlo_economia_percent', 35.00):.2f}% |
+| Custo operacional (R$) | {custo_atual:.2f} | {custo_modelo:.2f} |
+| Economia estimada | — | {economia_mc:.2f}% |
 
 ### Interpretação
 O cenário "antes" reflete a rota praticada historicamente: reativa, com ajustes manuais por experiência e sem priorização por demanda futura. O cenário "depois" aplica o IPL e o solver TSP, convertendo a decisão de roteirização em um processo preditivo e orientado a valor.

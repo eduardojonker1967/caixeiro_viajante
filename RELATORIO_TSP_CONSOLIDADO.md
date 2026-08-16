@@ -2,11 +2,11 @@
 
 **Projeto:** Roteirizador Preditivo com Otimização de Rotas (Caixeiro Viajante)  
 **Disciplina:** Sistemas Inteligentes | UDESC  
-**Data de Geração:** 2026-08-15 22:01:48  
+**Data de Geração:** 2026-08-15 22:21:02  
 **Autor:** Eduardo Lopes Jonker
 
 <environment_details>
-Current time: 2026-08-15T22:01:48
+Current time: 2026-08-15T22:21:02
 Working directory: /home/eduardo-note/Documentos/Caixeiro viajante
 Workspace root folder: /
 Active file: home/eduardo-note/Documentos/Caixeiro viajante/gerador_relatorio_tsp.py

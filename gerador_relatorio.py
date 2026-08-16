@@ -412,8 +412,8 @@ Essa baseline não possuía previsão de demanda nem priorização por valor de 
 |:--------|:---------------------:|:-------------------------:|
 | Distância total (km) | 3501.27 | 1430.76 |
 | Redução de distância | — | 59.14% |
-| Custo operacional (R$/mês) | 1526.79 | 1333.54 |
-| Economia mensal | — | R$ 193.25 |
+| Custo operacional (R$) | 650.02 | 366.54 |
+| Economia estimada | — | 43.61% |
 
 ### 8.3. Solver de Referência / Ótimo
 
