@@ -1,0 +1,6 @@
+solver,distancia_km,gap_vs_otimo_pct,n_cidades
+Aleatória,3251.87,124.25,18
+NN,1680.85,15.91,18
+2-opt,1450.11,0.0,18
+SA,1481.91,2.19,18
+AG,1638.11,12.96,18

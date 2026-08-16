@@ -27,27 +27,6 @@ build/
 *.db
 logs/
 
-# Relatórios gerados e artefatos
-# É uma boa prática não versionar arquivos que podem ser gerados a partir do código.
-RELATORIO_*.md
-RELATORIO_*.pdf
-relatorio_*.pdf
-documento_tsp_para_overleaf.tex
-apresentacao_proposta.pdf
-PARALELISMO_TSP_*.pdf
-RELATORIO_PARALELISMO_FINAL.pdf
-codigo_atualizado_tsp.pdf
-environment_details.pdf
-
-# Gráficos e imagens geradas
-*.png
-
-# Dados gerados pelos scripts
-*.csv
-*.json
-*.txt
-*.tex
-
 # Diretórios de histórico
 historico_relatorios/
 historico_readme/
