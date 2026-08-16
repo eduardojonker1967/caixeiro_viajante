@@ -634,30 +634,18 @@ Para garantir a reprodutibilidade e o bom funcionamento do projeto, documentamos
 
 ### Ambiente de Execução Atual
 <environment_details>
-Current time: 2026-08-15T22:28:14-03:00
+Current time: 2026-08-15T23:13:11-03:00
 Working directory: /home/eduardo-note/Documentos/Caixeiro viajante
 Workspace root folder: /home/eduardo-note/Documentos/Caixeiro viajante
 Open tabs:
-  mongodb-linux-x86_64.tgz
-  explicacao_prophet.md
-  gerador_relatorio.py
-  data_loader.py
-  analise_prophet.py
-  executar_tudo.py
-  Dockerfile
-  requirements.txt
-  database.py
-  README_PARALELISMO.md
-  main.py
-  tsp_solver.py
-  .gitignore
-  main_vrp.py
-  README.md
-  analise_paralelismo_detallhada.py
-  vrp_solver.py
-  benchmark_preditivo.py
-  dashboard_interativo.py
-  geradordepesos.py
+  src/analysis/analise_prophet.py
+  src/logistics/geradordepesos.py
+  src/optimization/tsp_solver.py
+  src/simulation/testestress.py
+  src/visualization/dashboard_interativo.py
+  docs/README.md
+  scripts/main.py
+  src/reporting/gerador_relatorio.py
 </environment_details>
 
 ---

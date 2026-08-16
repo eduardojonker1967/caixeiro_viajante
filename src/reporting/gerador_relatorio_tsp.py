@@ -30,7 +30,16 @@ def coletar_environment_details():
         visible_files = sorted([os.path.basename(f) for f in glob.glob('*') if os.path.isfile(f)])[:10]
     except Exception:
         visible_files = []
-    open_tabs = []
+    open_tabs = [
+        'src/analysis/analise_prophet.py',
+        'src/logistics/geradordepesos.py',
+        'src/optimization/tsp_solver.py',
+        'src/simulation/testestress.py',
+        'src/visualization/dashboard_interativo.py',
+        'docs/README.md',
+        'scripts/main.py',
+        'src/reporting/gerador_relatorio.py',
+    ]
     return current_time, working_directory, workspace_root, active_file, visible_files, open_tabs
 
 def fmt_env_block(current_time, working_directory, workspace_root, active_file, visible_files, open_tabs, dados=None):
